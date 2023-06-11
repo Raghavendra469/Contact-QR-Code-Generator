@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR generator</title>
+</head>
+<body>
+    <style>
+    body {
+      background-image: url({{ url_for('static', filename='pics/background.jpg') }});
+    }
+    </style>
+	<script type="text/javascript"> 
+
+    function displayForm(choice) {
+        channels = ["whatsapp", "phoneCall", "Email"];
+        channels.forEach(hideAll);
+        document.getElementById(channels[parseInt(choice.value) - 1]).style.display = 'block';
+    }
+
+    function hideAll(item, index) {
+        document.getElementById(item).style.display = 'none';
+    }
+    </script>
+
+    <center>
+        <form action="." method="post">
+            <h1>Free QR Code Generator</h1><br><br>
+            <input value="1" type="radio" name="formselector" onClick="displayForm(this)"></input><img src="{{ url_for('static', filename='pics/whatsapp.jpg') }}" height="80px" width = "80px">
+            <input value="2" type="radio" name="formselector" onClick="displayForm(this)"></input><img src="{{ url_for('static', filename='pics/phoneCall.png') }}" height="80px" width="80px">
+            <input value="3" type="radio" name="formselector" onClick="displayForm(this)"></input><img src="{{ url_for('static', filename='pics/email-logo.jpg') }}" height="80px" width="80px">
+            <br><br><br><br><br>
+     	
+
+     	<div style="display: none; position: relative;" id = "whatsapp">
+     			<label>Enter your whatsapp details:</label>
+     			<br><br><br>
+     			<dd>
+     				<label for="Ccode" name="cCode" >Choose country code:</label>
+     				<select id="Ccode" name="cCode">
+     					<option value="+91">+91</option>
+     					<option value="+93">+93</option>
+    					<option value="+355">+355</option>
+    					<option value="+213">+213</option>
+    					<option value="+61">+61</option>
+    					<option value="+43">+43</option>
+    					<option value="+994">+994</option>
+     				</select>
+     				<p>Whatsapp Number :
+                            <input type="text" minlength="10" maxlength="10" id="Wnumber" name="Wnumber">
+                    </p>
+                    <br><br>
+                    <input type="submit" value="submit">
+     			</dd>
+     		
+     	</div>
+
+     	<div style="display: none; position: relative;" id = "phoneCall">
+     			<label>Enter your call details:</label>
+     			<br><br>
+     			<dd>
+     				<p>phone Number :
+                            <input type="text" minlength="10" maxlength="10" id="PHnumber" name="PHnumber">
+                    </p>
+                     <br><br>
+                    <input type="submit" value="submit">
+     			</dd>
+     	</div>
+
+     	<div style="display: none; position: relative;" id = "Email">
+     			<label>Enter your mail details:</label>
+     			 <br><br>
+     			<dd>
+     				<p>Email :
+                            <input type="email" id="email" name="email">
+                    </p>
+                     <br><br>
+                    <input type="submit" value="submit">
+     			</dd>
+     	</div>
+     	 <br><br><br>
+        </form>
+    </center>
+</body>
+</html>
